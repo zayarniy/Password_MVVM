@@ -18,7 +18,7 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="19*"/>
             <RowDefinition Height="281*"/>
             <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
@@ -34,6 +34,7 @@
             </MenuItem>
             <MenuItem Header="Помощь"/>
         </Menu>
+        <local:TabSwitcherControl  HorizontalAlignment="Right" x:Name="tscTabSwitcherControl" CommandNext="{Binding ClickNext}" CommandPrev="{Binding ClickPrev}" CommandParameter="{Binding ElementName=tabControl}" Grid.Row="0" Height="20" VerticalAlignment="Top"/>
         <TabControl Grid.Row="1" SelectedIndex="{Binding TabControlIndex}" x:Name="tabControl" TabStripPlacement="Right">
             <TabItem>
                 <TabItem.Header>
@@ -44,7 +45,8 @@
                                 <TextBlock>Формирование группы рассылки</TextBlock>
                             </StackPanel>
                         </StackPanel.ToolTip>
-                        <Image Source="/Images/groups.ico" Width="20" HorizontalAlignment="Left"/>
+                        <!--<Image Source="/Images/groups.ico" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Regular_ListAlt" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Группы</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -109,7 +111,8 @@
   <TabItem x:Name="tabInstant" IsSelected="True">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/Images/outbox1.png" Width="20" HorizontalAlignment="Left"/>
+                        <!--<Image Source="/Images/outbox1.png" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Brands_Telegram" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Письмо</TextBlock>
                     </StackPanel>
 
@@ -132,7 +135,8 @@
             <TabItem x:Name="tabPlanner" IsSelected="False">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/Images/schedule.ico" Width="20" HorizontalAlignment="Left"/>
+                        <!--<Image Source="/Images/schedule.ico" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Solid_School" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Планировщик</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -147,34 +151,14 @@
                         <RowDefinition Height="20*"/>
                         <RowDefinition Height="20*"/>
                         <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
                     </Grid.RowDefinitions>
                     <local:TableScheduler x:Name="tbTime"  Grid.ColumnSpan="2" ItemsSource="{Binding ElementName=MainVM, Path=Database.Items}"/>
-                    <!--<StackPanel>
-                        
-                        <local:TimePicker x:Name="tbTime" />
-                        <TextBlock Background="AliceBlue" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{Binding ElementName=tbTime, Path=Date}"/>
-                    </StackPanel>
-                    <DataGrid Grid.Column="1" ItemsSource="{Binding Database.Items}" AutoGenerateColumns="False" MaxHeight="200" Margin="5" x:Name="dgSchedule">
-
-
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="dgtcDateTime" Binding="{Binding DateTime}" Header="Time" IsReadOnly="True" Width="Auto"/>
-                            <DataGridTextColumn x:Name="dgtcMailMessage" Binding="{Binding MailMessage.Body}" Header="MailMessage" Width="1*"/>
-                            <DataGridCheckBoxColumn x:Name="dgcbcSent" Binding="{Binding Sent}" Header="Sent" Width="Auto"/>
-                        </DataGrid.Columns>
-                        
-                        <DataGrid.InputBindings>
-                            <MouseBinding Gesture="LeftClick" 
-                            Command="{Binding ClickSchedule}" 
-                            CommandParameter="{Binding ElementName=dgSchedule, Path=SelectedItem}" />
-                        </DataGrid.InputBindings>
-                        
-                    </DataGrid>
-                    -->
                     <Button x:Name="btnToDoTask" Command="{Binding ToDoTask}" CommandParameter="{Binding ElementName=tbTime,Path=Date}"  Grid.Row="2" HorizontalAlignment="Center"   VerticalAlignment="Top" Width="180" Height="25" Grid.ColumnSpan="2">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Images/clock.png" Width="16" Height="16"/>
+                                <!--<Image Source="/Images/clock.png" Width="16" Height="16"/>-->
+                                <fa:FontAwesome Icon="Solid_ThLarge"/>
                                 <TextBlock Text="Запланировать" VerticalAlignment="Center" Width="auto" />
                             </StackPanel>
                         </Button.Content>
@@ -182,8 +166,18 @@
                     <Button x:Name="btnSendAllAtOnce" Command="{Binding SendAllAtOnce}" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Grid.ColumnSpan="3" Width="180">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Images/cache.png"/>
+                                <!--<Image Source="/Images/cache.png"/>-->
+                                <fa:FontAwesome Icon="Solid_Bolt"/>
                                 <TextBlock  Text="Отправить сразу" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnStopScheduler" Command="{Binding SendAllAtOnce}" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" Height="25" Grid.ColumnSpan="3" Width="180">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Source="/Images/cache.png"/>-->
+                                <fa:FontAwesome Icon="Solid_Stop"/>
+                                <TextBlock  Text="Остановить планировщик" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -193,7 +187,8 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/Images/settings.ico" Width="20" HorizontalAlignment="Left"/>
+                        <!--<Image Source="/Images/settings.ico" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Solid_Cog" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Настройки</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -224,12 +219,12 @@
             <TabItem Selector.Selected="TabItem_Selected">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/Images/stat.ico" Width="20" HorizontalAlignment="Left"/>
-                        
+                        <!--<Image Source="/Images/stat.ico" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Regular_Newspaper" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Отчет</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
-                <WindowsFormsHost>
+                <WindowsFormsHost x:Name="wfhHost">
                     <!-- так как ReportViewer является элементом WinForms для его использования приходится нарушать модель MVVM-->
                     <rdlcreport:ReportViewer x:Name="_reportviewer" />
                 </WindowsFormsHost>
@@ -238,7 +233,8 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/Mailer;component/Images/Mail_64x.png" Width="20" HorizontalAlignment="Left"/>
+                        <!--<Image Source="/Mailer;component/Images/Mail_64x.png" Width="20" HorizontalAlignment="Left"/>-->
+                        <Label fa:Awesome.Content="Solid_ThList" HorizontalAlignment="Left"/>
                         <TextBlock Margin="3">Журнал</TextBlock>
                     </StackPanel>
                 </TabItem.Header>
@@ -257,7 +253,6 @@
                 <Label x:Name="lbStatus"/>
                 <Label x:Name="lbTick" Content="{Binding TickCount}"/>
             </StatusBar>
-                <local:TabSwitcherControl DockPanel.Dock="Right"  HorizontalAlignment="Right" x:Name="tscTabSwitcherControl" CommandNext="{Binding ClickNext}" CommandPrev="{Binding ClickPrev}" CommandParameter="{Binding ElementName=tabControl}"/>
             </DockPanel>
         </Grid>
     </Grid>

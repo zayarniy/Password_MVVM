@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Mailer.Model;
 using Mailer.Commands;
 using System.Windows.Controls;
+//using System.Windows.Forms;
 
 namespace Mailer.ViewModels
 {
@@ -67,7 +68,7 @@ namespace Mailer.ViewModels
 
         public Model.Database Database { get => database; set => database = value; }
 
-        public List<Item> Databas { get; set; } =new List<Item>();
+        public List<Item> Databas { get; set; } = new List<Item>();
         //public List<string> Databas { get; set; } = new List<string>() { "1", "2", "3" };
 
         public int Port { get; set; } = 25;//Пока используется только для демонстрации валидации
@@ -242,9 +243,9 @@ namespace Mailer.ViewModels
             foreach (var mail in Database.Items)
                 if (!mail.Sent && mail.DateTime <= now)
                 {
-                    
+
                     mail.Sent = EmailSendServiceClass.Send(mail.MailMessage);
-                    Console.WriteLine("Message has "+((mail.Sent)?"":"not")+" sent");
+                    Console.WriteLine("Message has " + ((mail.Sent) ? "" : "not") + " sent");
                 }
         }
 
@@ -282,6 +283,7 @@ namespace Mailer.ViewModels
 
         private int tabControlIndex = 0;
         private Database database = new Model.Database();
+        private System.Windows.Forms.Integration.WindowsFormsHost _windowsFormsHost;
 
         public int TabControlIndex
         {
@@ -318,6 +320,15 @@ namespace Mailer.ViewModels
         public ICommand ClickNext => NextTab;
 
         public ICommand ClickPrev => PrevTab;
+
+        public System.Windows.Forms.Integration.WindowsFormsHost WindowsFormsHost {
+            get => _windowsFormsHost;
+            set  
+                {
+                Console.WriteLine("WFH:"+value);
+                _windowsFormsHost = value;
+            }
+        }
 
     }
 }

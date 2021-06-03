@@ -43,10 +43,8 @@ namespace Mailer
 
         private void InitializeReport()
         {
-            _reportviewer.LocalReport.DataSources.Clear();
-            var rpds_model = new ReportDataSource() { Name = "DataSet1", Value = MainVM.Database.Items };
-
-            _reportviewer.LocalReport.DataSources.Add(rpds_model);
+            _reportviewer.LocalReport.DataSources.Clear();            
+            _reportviewer.LocalReport.DataSources.Add(new ReportDataSource() { Name = "DataSet1", Value = MainVM.Database.Items });
             _reportviewer.LocalReport.EnableExternalImages = true;
             _reportviewer.LocalReport.ReportPath = ContentStart;
             _reportviewer.SetDisplayMode(DisplayMode.PrintLayout);
@@ -55,9 +53,8 @@ namespace Mailer
         }
 
 
-        private static string _path = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())));
 
-        public static string ContentStart = _path + @"\Mailer MVVM\Report.rdlc";
+        public static string ContentStart = "Report.rdlc";
 
         private void TabItem_Selected(object sender, RoutedEventArgs e)
         {
